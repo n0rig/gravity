@@ -201,6 +201,7 @@ func rpcAgentDeployHelper(ctx context.Context, localEnv *localenv.LocalEnvironme
 		proxy:        proxy,
 		leaderParams: leaderParams,
 		nodeParams:   nodeParams,
+		seLinux:      cluster.SELinux,
 	}
 
 	// Force this node to be the operation leader
@@ -319,6 +320,7 @@ func newDeployAgentsRequest(ctx context.Context, req deployAgentsRequest) (*rpc.
 		LeaderParams:   req.leaderParams,
 		Leader:         req.leader,
 		NodeParams:     req.nodeParams,
+		SELinux:        req.seLinux,
 	}, nil
 }
 
@@ -402,4 +404,5 @@ type deployAgentsRequest struct {
 	leaderParams string
 	leader       *storage.Server
 	nodeParams   string
+	seLinux      bool
 }
